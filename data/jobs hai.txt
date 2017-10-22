@@ -19,6 +19,7 @@ mission "Import from Hai [0]"
 		random < 50
 	source
 		government Pirate
+		near "Ultima Thule" 1 6
 	stopover
 		government Hai
 		near "Waypoint" 1 10
@@ -27,5 +28,5 @@ mission "Import from Hai [0]"
 		dialog "You load the goods for your mission into the cargo hold. Now you need to return to <planet> for payment."
 	on complete
 #		payment 0 200
-		payment 50000
+		payment 75000
 		dialog "You deliver the load of Hai goods to the wealthy individual. Your account is credited with <payment> credits."
