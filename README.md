@@ -1,5 +1,5 @@
 # pirate-planets
-## A mod with a new start and storyline for endless-skys
+## A mod with a new start and storyline for endless-sky
 
 The pirate worlds have always been an essential part of the Republic,
 necessary and despised at the same time. They take the pressure off
