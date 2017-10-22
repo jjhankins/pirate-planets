@@ -8,7 +8,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-# TODO: payment is negative - because of the wormhole?
+# TODO: payment is negative - because of the wormhole? Check v.9.9
 mission "Import from Hai [0]"
 	name "Retrieve cargo from Hai space"
 	job
@@ -26,5 +26,6 @@ mission "Import from Hai [0]"
 	on stopover
 		dialog "You load the goods for your mission into the cargo hold. Now you need to return to <planet> for payment."
 	on complete
-		payment 0 200
+#		payment 0 200
+		payment 50000
 		dialog "You deliver the load of Hai goods to the wealthy individual. Your account is credited with <payment> credits."
