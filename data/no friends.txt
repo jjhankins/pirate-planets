@@ -97,7 +97,6 @@ mission "Going legit [1]"
 	infiltrating
 	to offer
 		has "No friends left in the Pirate worlds: offered"
-		not "Second chance"
 		"reputation: Pirate" < 0
 		"reputation: Republic" < 0
 		"reputation: Free Worlds" < 0
@@ -286,7 +285,9 @@ mission "Going legit [2]"
 				`	Accept the job, at least for now.`
 					accept
 				`	Yes, turn it down.`
-			`	Your body turns up in a dumpster the next morning. The police attribute your death to accidental electrocution and you are never identified. Your remains are eventually made into fertilizer for rooftop flower gardens.`
+			`	Your body turns up in a dumpster the next morning. The
+			police attribute your death to accidental electrocution
+			and you are never identified. Your remains are eventually made into fertilizer for rooftop flower gardens.`
 				die
 
 	on complete
