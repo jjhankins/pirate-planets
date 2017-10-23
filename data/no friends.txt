@@ -9,11 +9,6 @@
 # PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 
-government "vengeful Merchant"
-	swizzle 5
-	"hostile hail" "hostile civilian"
-
-
 mission "No friends left in the Pirate worlds"
 	repeat
 	minor
@@ -45,6 +40,51 @@ mission "No friends left in the Pirate worlds"
 		"reputation: Pirate Warlords" = -5000
 
 
+government "vengeful Merchant"
+	swizzle 5
+	"hostile hail" "hostile civilian"
+
+# Copied from "Small Northern Pirates"
+fleet "Vengeful Merchants"
+	government "vengeful Merchants"
+	names "civilian"
+	cargo 2
+	personality appeasing vindictive heroic
+		confusion 30
+	variant 5
+		"Sparrow"
+	variant 3
+		"Fury"
+	variant 1
+		"Fury (Missile)"
+	variant 1
+		"Fury (Laser)"
+	variant 2
+		"Berserker"
+	variant 2
+		"Berserker (Afterburner)"
+	variant 2
+		"Hawk"
+	variant 1
+		"Hawk (Rocket)"
+	variant 1
+		"Hawk (Speedy)"
+	variant 3
+		"Headhunter"
+	variant 2
+		"Headhunter (Particle)"
+	variant 2
+		"Raven (Afterburner)"
+	variant 1
+		"Raven (Heavy)"
+	variant 2
+		"Corvette"
+	variant 1
+		"Corvette (Missile)"
+	variant 1
+		"Corvette (Speedy)"
+
+
 mission "Going legit [1]"
 	name "Find a way to clear your name"
 	description "Joan Dimitrov is aboard the <npc> escorting you to someone she knows on Earth who may be able to help clear your name, on the condition that you promise never to shoot down a Merchant again."
@@ -53,6 +93,7 @@ mission "Going legit [1]"
 		government "Republic"
 	destination Earth
 	clearance
+		government "Republic"
 	infiltrating
 	to offer
 		has "No friends left in the Pirate worlds: offered"
@@ -66,27 +107,26 @@ mission "Going legit [1]"
 	npc save
 		government "Merchant"
 		personality pacifist waiting escort
-		fleet "Small Northern Merchants"
+		ship Shuttle "Forgotten Riches"
 	npc
 		government "vengeful Merchant"
-		personality heroic vindictive waiting
+		personality waiting
 		fleet "Large Northern Merchants"
-		fleet "Large Northern Merchants"
-		fleet "Large Northern Merchants"
-		fleet "Small Northern Merchants"
-		fleet "Small Northern Merchants"
-		fleet "Small Northern Merchants"
-		fleet "Small Northern Merchants"
+		fleet "Vengeful Merchants"
+		fleet "Vengeful Merchants"
+		fleet "Vengeful Merchants"
+		fleet "Vengeful Merchants"
+		fleet "Vengeful Merchants"
+		fleet "Vengeful Merchants"
 	to fail
 		"reputation: vengeful Merchant" < -1
 	on offer
 		"reputation: vengeful Merchant" = -1
-		"reputation: Merchant" = 0
 		conversation
 			`You've managed to land safely on a Republic world. Would you like to turn yourself in?`
 			choice
-				"Yes, there's no other option."
-				"No, you've still some fight left in you."
+				`Yes, there's no other option.`
+				`No, you've still some fight left in you.`
 					decline
 			`	You get out of your ship and walk off through the spaceport. In some ways it's not that different from a spaceport on the Pirate worlds. There are ships all around loading and unloading cargo. There are plenty of bars, and pilots trying get drunk in them. Things are a bit tidier than in the Pirate worlds, but not as much as you might expect. The main difference is the size of it all. There are enough people walking through the spaceport to make two or three good-sized Pirate world towns and you haven't even made it out of the spaceport yet. And no one seems to know who you are. You half expected armed guards to be waiting when you came out of your ship, ready to take you into custody. But it looks as if it's not going to be that easy.`
 			`	Finally you turn to a woman who looks like a star pilot. "Is there... a Navy building? Or police, or something? A place they take care of criminals?"`
@@ -105,41 +145,66 @@ mission "Going legit [1]"
 			`	And so you do. It takes hours. You start with your life on the turnip farm and go from there, telling her everything, even things you've never told anyone else. As you do you watch her go from skeptical disbelief, to amazement and interest, and finally at the end, dawning horror.`
 			`	"I can't believe I'm considering believing you," she says at last. "You're either a freaking fantastic story teller, or you really are Pirate <first> <last>."`
 			`	"I can take you to my ship," you say. "It's docked nearby. I'll show you my logs."`
-			`	"Let's do that," she says. She's silent for a moment, but you can tell she believes you, at least for now. "You mean it, right? You're going legit? No more pirating, no more shooting merchant ships?"`
-			`	"What do you mean?" you say. "It doesn't matter whether I mean it, I'm turning myself in."`
+			`	"Let's do that," she says. She's silent for a moment, but you can tell she believes you, at least for now. "You mean it, right? You're going legit? No more pirating, no more shooting down merchant ships?"`
+			`	"What do you care?" you say. "It doesn't matter whether I mean it, I'm turning myself in."`
 			`	"But if you didn't turn yourself in. If you had a second chance, would you take it? On that condition?"`
 			choice
-				`	"Yeah. I'd take it. Sure, no more pirating merchants."`
+				`	"Yeah. I'd take it. No more pirating merchants."`
 					goto chance
 				`	"Honestly? No, I'd probably go back to pirating first chance I got. It's who I am."`
 			`	She looks at you for a long moment, then nods. "At least you're honest," she says. "You should know my name. It's Joan Dimitrov. Come with me."`
 			`	She leads you out of the bar and down the street. At the end of the block there's a small Navy MP booth, you would have seen it soon yourself if you'd just kept going. She marches up to the window holding your arm, there's no line, and says to the man standing there, "You've got files on known criminals, right?"`
 			`	"Sure," the officer says, clearly bored. "What do you need?"`
 			`	"Can you pull up the records on <first> <last> for me?"`
-			`	"You mean the famous pirate? Why do you want that?"`
+			`	"You mean the pirate who's been terrorizing the north? Why do you want that?"`
 			`	"Can you just do it? Or are you too busy?" she asks.`
-			`	He looks up and down the street at the conspicuous lack of people calling on his services. "Fine." He pulls up the records on a portable viewer and shows it to her. Then he notices you standing next to her. "Say, are you--?"`
-			`	But he's interrupted. In a loud, carrying voice, Joan says, "Officer, I'm calling upon you to witness a citizen's execution." Then without pausing she pulls out a pistol and shoots you between the eyes.`
+			`	He looks up and down the street at the conspicuous lack of people calling on his services. "Fine." He pulls up the records on a portable viewer and shows it to her. There's no picture, but it lists ships you've destroyed and other crimes you've been accused of. "And you? What do you want?" the officer asks, looking at you.`
+			`	"I'm <first> <last>," you say.`
+			`	"What?" the officer asks. He reaches for his gun, but he's too slow.`
+			`	In a loud, carrying voice, Joan says, "Officer, I'm calling upon you to witness a citizen's execution." She's drawing her pistol as she says the words, and when she's done she shoots you between the eyes.`
 			`	You are dead.`
 				die
 			label chance
-			`	"I think I know someone who can help you. He's on Earth. I'll have to take you, I've been needing a break from freight runs anyway. You'll keep your promise, though? No attacking Merchants, even if they attack you. I'll try to keep them off of you, but you've earned quite a reputation. Think you can manage that?"`
+			`	"In that case I think I know someone who can help you. He's on Earth. I'll have to take you. I've been needing a break from freight runs anyway. You'll keep your promise, though? No attacking Merchants, even if they attack you. Think you can manage that?"`
 			`	"I said I would, didn't I?"`
 			`	"Okay then." She stands up, and when you continue to sit, confused, she says, "Come on! You didn't really want to turn yourself in, did you?"`
 			`	You stand up. "I don't know your name," you say.`
 			`	"Joan Dimitrov."`
 				accept
+
+	on accept
+		log `I went to turn myself in to the Republic Navy and met Joan Dimitrov. She claims to be able to hook me up with someone who can clear my name.`
 	on fail
 		dialog "You failed to keep your end of the bargain and Joan has abandoned you to your fate."
 		"reputation: Merchant" = -5000
 
+
+government "Navy Courier"
+	swizzle 0
+	"friendly hail" "friendly navy"
+	"hostile hail" "hostile navy"
+
+
+# Need to think about how this works if the mainline story is in progress. Is that even possible? XXX
 mission "Going legit [2]"
 	name "Find a way to clear your name"
 	description "Joan Dimitrov has escorted you to Earth where she believes she knows someone who can help you clear your record."
 	landing
 	source Earth
+	stopover Bourne
+	clearance
+		government Republic
 	to offer
 		has "Going legit [1]: done"
+	npc kill
+		government "Navy Courier"
+		personality unconstrained fleeing entering
+		system "Gamma Corvi"
+		dialog "You have destroyed the courier, now you can return to <destination> to get your name cleared."
+		fleet
+			names "republic small"
+			variant 1
+				"Corvette (Speedy)"
 	on offer
 		conversation
 			`You leave your ship parked in orbit and transfer over to Joan's for the trip to Earth. She smuggles you out of her ship and down disused hallways. Eventually you make it out of the spaceport and into the surrounding city, where she loads you into a bus, and then a train, and then another bus. When at last you get off the bus you have no idea where you are, only a sense of an endless maze of streets and huge buildings, and more people than you thought could exist in the entire galaxy.`
@@ -170,7 +235,74 @@ mission "Going legit [2]"
 			`	"I have money."`
 			`	"Yes, let's start there," Rob says. "A hundred million credits."`
 			`	"A hundred--!" You knew it would cost, but not that much. "What if I don't have it?"`
-			`	"Oh, you do," Joan says. "You may have to sell a starship or two, but I'm confident you can come up with the credits. You'll have a chance to do what you need to do to come up with the money."`
-			`	"Yes," Rob says. "Because money is only part of the cost. There's something we need you to do."`
+			`	"You should, I checked," Joan says. "You may have to sell off some of your fleet, but I'm confident you can come up with the credits. You'll have a chance to to come up with the money."`
+			`	"Yes," Rob says. "Because money is only part of the cost. There's something else we need you to do."`
 			`	"What?" you ask.`
+			`	"There is a courier carrying a sensitive message. We want you to destroy it before it can reach its destination."`
+			choice
+				`	"Sure, no problem."`
+					goto "the plan"
+				`	"Why?"`
+			`	"Why?" Rob asks. "You're a pirate, do you need a reason?"`
+			`	"Yes I do," you say. "I'm a hired gun, fine. I get that. But that doesn't mean I'm going to do anything that's asked of me, no questions asked. If you want me to do this for you, I need to understand what I'm doing."`
+			`	Joan says nothing. Rob asks, "You're really going to risk your chance at freedom over this?"`
+			choice
+				`	"Yes."`
+				`	"No."`
+					goto "the plan"
+			`	"I told you," Joan says. "He may be a pirate, but he's also a pilot. That means he's proud." Turning back to you she goes on, "It's politics. The rim worlds have been growing, and there's pressure mounting behind a new redistricting plan. A group of representatives from the Deep are ready to sign on, providing certain conditions are met. The courier is bringing the Deep coalition's requirements to the Rim."`
+			choice
+				`	"So you're against the redistricting plan? Why?"`
+					goto "against the plan"
+				`	"Why couldn't they just send the message through the relay network?"`
+				`	"That's all I needed to know. I'll do it."`
+					goto "the plan"
+			`	"What is this, twenty questions?" Rob asks.`
+			`	"The courier isn't just carrying a message, it's bringing a representative from the Deep who's been empowered to negotiate," Joan says. "Now, are you in or out?"`
+			choice
+				`	"I'm in."`
+					goto "the plan"
+				`	"You know, I'm having second thoughts."`
+					goto "second thoughts"
+			label "against the plan"
+			`	"For goodness sake!" Rob shouts. "What do you want, our life story?"`
+			`	"It's a fair question," Joan says. "Yes, we're against it. If it goes through our father's district will be one of the ones eliminated in favor of new Rim and Dirt Belt districts. But that's enough questions. Are you in or out?"`
+			choice
+				`	"I'm in."`
+					goto "the plan"
+				`	"Actually, I'm having second thoughts."`
+					goto "second thoughts"
+			label "the plan"
+			`	"Good," Joan says. "The courier is a Navy ship named <npc>. It's already en route to <destination>. You'll need to hurry to catch it. You'll still be flying pirate colors, so the Navy and the Merchants will be after you, I'm afraid. Once you've eliminated the <npc> return here with a hundred million credits and your name will be cleared."`
+			`	"Why can't you clear my record ahead of time?" you ask.`
+			`	"Dammit!" Rob says. "We don't need this, you can do it yourself!"`
+			`	"We've gone over this," Joan says. "It will be much less suspicious if the courier is destroyed by a known pirate. If I do it there's too much chance it will be traced back to Dad." Then, to you, she says, "And that's why we can't clear your name ahead of time. Now, we're really past the point of questions. Either you're in or your out."`
+			choice
+				`	Take the job.`
+					accept
+				`	Turn it down.`
+			`	If you turn it down you probably know too much for them to let you live. Are you sure?`
+			choice
+				`	Accept the job, at least for now.`
+					accept
+				`	Yes, turn it down.`
+			`	Your body turns up in a dumpster the next morning. The police attribute your death to accidental electrocution and you are never identified. Your remains are eventually made into fertilizer for rooftop flower gardens.`
+				die
 
+	on complete
+		log "People" "Joan Dimitrov" `Joan Dimitrov is a merchant star pilot. She is also the daughter of one of the central worlds' Parliament representatives, and unscrupulous in pursuing his interests.`
+		log "People" "Rob Dimitrov" `Rob is Joan Dimitrov's brother and co-conspirator, and apparently able to easily hack into government databases across the Republic.`
+		log `I am no longer a Pirate. My name has been cleared and I have a clean slate with the governments of Human space.`
+		payment -100000000
+		"reputation: Republic" = 0
+		"reputation: Free Worlds" = 0
+		"reputation: Merchant" = 0
+		"reputation: Militia" = 0
+		"reputation: Syndicate" = 0
+		"reputation: Neutral" = 0
+		conversation
+			`Fortunately you don't have to make the journey to Rob's place again, Joan is waiting for you when you land. You give her the credits and she sends a message to her brother. After that you wait around in the spaceport for half an hour.`
+			`	Eventually Joan gets a message that it's done, your record has been wiped clean. You say goodbye, and hope you never see her again.`
+			
+
+# TODO: a side-mission, where you turn against the Dimitrov's
