@@ -103,13 +103,13 @@ mission "Going legit [1]"
 		"combat rating" > 1500
 		"net worth" > 100000000
 		"reputation: Merchant" < -1000
-	npc save
+	npc accompany
 		government "Merchant"
 		personality pacifist waiting escort
 		ship Shuttle "Forgotten Riches"
 	npc
 		government "vengeful Merchant"
-		personality waiting
+		personality waiting unconstrained
 		fleet "Large Northern Merchants"
 		fleet "Vengeful Merchants"
 		fleet "Vengeful Merchants"
@@ -187,7 +187,7 @@ government "Navy Courier"
 # Need to think about how this works if the mainline story is in progress. Is that even possible? XXX
 mission "Going legit [2]"
 	name "Find a way to clear your name"
-	description "Joan Dimitrov has escorted you to Earth where she believes she knows someone who can help you clear your record."
+	description "Destroy a courier on its way to <stopovers> and return to Earth with a hundred million credits to clear your name."
 	landing
 	source Earth
 	stopover Bourne
@@ -207,19 +207,19 @@ mission "Going legit [2]"
 	on offer
 		conversation
 			`You leave your ship parked in orbit and transfer over to Joan's for the trip to Earth. She smuggles you out of her ship and down disused hallways. Eventually you make it out of the spaceport and into the surrounding city, where she loads you into a bus, and then a train, and then another bus. When at last you get off the bus you have no idea where you are, only a sense of an endless maze of streets and huge buildings, and more people than you thought could exist in the entire galaxy.`
-			`	You're in a more residential area now. The buildings are as tall as ever, but there are more children now, and the ground floors are taken up with shops and groceries rather than financial institutions and company headquarters. You glimpse bits of greenery off the tops of the buildings, and you conclude that there must be green space up there, out of reach of the street noise.`
-			`	Joan takes you into a building that's indistinguishable to your eye from any of the others. There's a live security guard - he recognizes Joan, which strikes you as odd. How often would a star pilot have reason to come to a wealthy Earth residential district? Joan takes you into the elevator. She punches a button, not for one of the upper floors, but for a basement level. A keypad is revealed, and she punches in the code. After a brief interval the door slides open to reveal a short hall, and another door.`
-			`	You step out into the hall but she stays in the elevator. "We don't have to do this, you know. I can take you back to your ship if you want, and you can take your chances."`
+			`	You're in a more residential area now. The buildings are as tall as ever, but there are more children, and the ground floors are taken up with shops and groceries rather than financial institutions and company headquarters. You glimpse bits of greenery off the tops of the buildings, and you suspect that there might be green space up there, out of reach of the street noise.`
+			`	Joan takes you into a building that's indistinguishable to your eye from any of the others. There's a live security guard - he recognizes Joan, which strikes you as odd. How often would a star pilot have reason to come to a wealthy Earth residential district? Joan takes you into the elevator. She punches a button, not for one of the upper floors, but for a basement level. A keypad is revealed, and she punches in a code. After a brief interval the door slides open to reveal a short hall, and another door.`
+			`	You step out into the hall but she stays in the elevator. "Having second thoughts? We don't have to do this. I can take you back to your ship if you want, and you can take your chances out there."`
 			choice
 				`	Go through the door.`
 					goto Rob
 				`	Tell Joan you want to return to your ship.`
-			`	"Are you sure?" Joan asks. "If you go back to your ship you'll have every hand in the galaxy against you, and you're not likely to get another chance like this one."`
+			`	"Just be sure," Joan says. "If you go back to your ship you'll have every hand in the galaxy against you, and you're not likely to get another chance like this one."`
 			choice
 				`	"You're right. This is my only chance. Lets do this."`
 					goto Rob
 				`	"No, I don't know what's going on here, but I'm backing out before I'm in too deep."`
-			`	"That's a shame," she says, and pushes a button inside the elevator. The doors slide closed, leaving you in the hall. You push the button to summon the elevator, but nothing happens. A moment later you hear a hissing noise. Your throat begins to spasm and you cough, seconds later you find it impossible to breathe. For about fifteen endless seconds you are in intense pain as every muscle in your body responds to the toxin by trying to pull itself loose from its mooring. Then the world goes blessedly gray.`
+			`	"That's a shame," she says, and pushes a button inside the elevator. The doors slide closed, leaving you in the hall. You push the button to summon the elevator, but nothing happens. A moment later you hear a hissing noise. Your throat begins to spasm and you cough, seconds later you find it impossible to breathe. For about fifteen endless seconds you suffer intense pain as every muscle in your body responds to the toxin by trying to pull itself loose from its mooring. Then the world fades blessedly away.`
 			`	You are dead.`
 				die
 			label Rob
@@ -229,12 +229,13 @@ mission "Going legit [2]"
 			`	"Yes. He's busy. As always." Meanwhile his eyes haven't left you. His unabashed stare makes you feel like meat displayed on a butcher's counter. You wish you were back in the cockpit of your ship.`
 			`	Joan finishes her perusal of the equipment and turns back to you. "This is my brother, Rob. He can clear your name. He'll expunge all reference to you from the public record, from the Merchant boards, and eliminate your criminal history in the Navy databases. He can even remove any reference to you from Republic Intelligence."`
 			`	"That one's tricky," Rob says modestly. "It's hard to ever be completely sure with Republic Intelligence. But they're not your main worry, I don't think."`
-			`	"This must come at a cost," you say.`
-			`	"Yes," Rob says.`
-			`	"I have money."`
+			choice
+				`	"This must come at a cost."`
+			`	"Yes," Rob says. "It does."`
+			`	"I have money," you say.`
 			`	"Yes, let's start there," Rob says. "A hundred million credits."`
-			`	"A hundred--!" You knew it would cost, but not that much. "What if I don't have it?"`
-			`	"You should, I checked," Joan says. "You may have to sell off some of your fleet, but I'm confident you can come up with the credits. You'll have a chance to to come up with the money."`
+			`	"A hundred--!" You knew it would be expensive, but not that much. "What if I don't have it?"`
+			`	"You should. We checked," Joan says. "You may have to sell off some of your fleet, but I'm confident you can come up with the credits. You'll have a chance to to come up with the money."`
 			`	"Yes," Rob says. "Because money is only part of the cost. There's something else we need you to do."`
 			`	"What?" you ask.`
 			`	"There is a courier carrying a sensitive message. We want you to destroy it before it can reach its destination."`
@@ -242,8 +243,8 @@ mission "Going legit [2]"
 				`	"Sure, no problem."`
 					goto "the plan"
 				`	"Why?"`
-			`	"Why?" Rob asks. "You're a pirate, do you need a reason?"`
-			`	"Yes I do," you say. "I'm a hired gun, fine. I get that. But that doesn't mean I'm going to do anything that's asked of me, no questions asked. If you want me to do this for you, I need to understand what I'm doing."`
+			`	"Why?!" Rob asks. "You're a pirate, do you need a reason?"`
+			`	"Yes I do," you say. "I'm a hired gun, fine. I get that. But that doesn't mean I'm going to do whatever's asked of me, no questions asked. If you want me to do this for you, I need to understand what I'm doing."`
 			`	Joan says nothing. Rob asks, "You're really going to risk your chance at freedom over this?"`
 			choice
 				`	"Yes."`
@@ -271,6 +272,10 @@ mission "Going legit [2]"
 					goto "the plan"
 				`	"Actually, I'm having second thoughts."`
 					goto "second thoughts"
+			label "second thoughts"
+			`	"See! I told you this was a bad idea." Rob says. "There's no way we can trust him, even if he agrees to do it!"`
+			`	"Yeah," Joan says. "I think you might be right."`
+				goto dead
 			label "the plan"
 			`	"Good," Joan says. "The courier is a Navy ship named <npc>. It's already en route to <destination>. You'll need to hurry to catch it. You'll still be flying pirate colors, so the Navy and the Merchants will be after you, I'm afraid. Once you've eliminated the <npc> return here with a hundred million credits and your name will be cleared."`
 			`	"Why can't you clear my record ahead of time?" you ask.`
@@ -285,9 +290,8 @@ mission "Going legit [2]"
 				`	Accept the job, at least for now.`
 					accept
 				`	Yes, turn it down.`
-			`	Your body turns up in a dumpster the next morning. The
-			police attribute your death to accidental electrocution
-			and you are never identified. Your remains are eventually made into fertilizer for rooftop flower gardens.`
+			label dead
+			`	Your body turns up in a dumpster the next morning. The police attribute your death to accidental electrocution and you are never identified. Your remains are eventually made into fertilizer for rooftop flower gardens.`
 				die
 
 	on complete
