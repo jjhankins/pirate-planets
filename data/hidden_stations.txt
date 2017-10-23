@@ -52,7 +52,6 @@ event "discover Cerberus"
 			distance 5899.67
 			period 20507.2
 			offset 8
-			belt 1410
 
 event "discover Acheron"
 	unvisit Moktar
@@ -62,7 +61,6 @@ event "discover Acheron"
 			distance 5899.67
 			period 20507.2
 			offset 10
-			belt 1410
 
 event "discover Styx"
 	unvisit Hassaleh
@@ -72,7 +70,6 @@ event "discover Styx"
 			distance 5899.67
 			period 20507.2
 			offset 47
-			belt 1410
 
 mission "Discover Cerberus"
 	name `Locate the hidden base the pirates call "Cerberus".`
