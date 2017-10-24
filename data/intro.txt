@@ -29,6 +29,7 @@ mission "Intro [0 Pirate]"
 	to offer
 		has "born in the Pirate Planets"
 	on offer
+		set "Intro [0]: offered"
 		event "Start life as a Pirate"
 		conversation
 			`	You've never been in the cockpit of a starship before, but your uncle Max spent time in space and you used to listen to his stories over and over again. It's not like you imagined it would be. Everything is dingy, and there's dirt everywhere. There are food wrappers kicked into the corners under the console, and the pilot's seat has probably held thousands of pilots' bottoms, and looks it. As a farmer you're used to dirt, but this is different. Real dirt is clean, this is just dirty.`
