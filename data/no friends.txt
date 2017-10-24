@@ -45,8 +45,8 @@ government "vengeful Merchant"
 	"hostile hail" "hostile civilian"
 
 # Copied from "Small Northern Pirates"
-fleet "Vengeful Merchants"
-	government "vengeful Merchants"
+fleet "Vengeful Merchant"
+	government "vengeful Merchant"
 	names "civilian"
 	cargo 2
 	personality appeasing vindictive heroic
@@ -94,7 +94,6 @@ mission "Going legit [1]"
 	destination Earth
 	clearance
 		government "Republic"
-	infiltrating
 	to offer
 		has "No friends left in the Pirate worlds: offered"
 		"reputation: Pirate" < 0
@@ -106,19 +105,22 @@ mission "Going legit [1]"
 	npc accompany
 		government "Merchant"
 		personality pacifist waiting escort
-		ship Shuttle "Forgotten Riches"
+		ship Shuttle
 	npc
 		government "vengeful Merchant"
 		personality waiting unconstrained
 		fleet "Large Northern Merchants"
-		fleet "Vengeful Merchants"
-		fleet "Vengeful Merchants"
-		fleet "Vengeful Merchants"
-		fleet "Vengeful Merchants"
-		fleet "Vengeful Merchants"
-		fleet "Vengeful Merchants"
+		fleet "Vengeful Merchant"
+		fleet "Vengeful Merchant"
+		fleet "Vengeful Merchant"
+		fleet "Vengeful Merchant"
+		fleet "Vengeful Merchant"
+		fleet "Vengeful Merchant"
 	to fail
 		"reputation: vengeful Merchant" < -1
+	on visit
+		dialog `You seem to have left Joan and the <npc> behind. Better launch and wait for her.`
+
 	on offer
 		"reputation: vengeful Merchant" = -1
 		conversation
@@ -128,7 +130,15 @@ mission "Going legit [1]"
 				`No, you've still some fight left in you.`
 					decline
 			`	You get out of your ship and walk off through the spaceport. In some ways it's not that different from a spaceport on the Pirate worlds. There are ships all around loading and unloading cargo. There are plenty of bars, and pilots trying get drunk in them. Things are a bit tidier than in the Pirate worlds, but not as much as you might expect. The main difference is the size of it all. There are enough people walking through the spaceport to make two or three good-sized Pirate world towns and you haven't even made it out of the spaceport yet. And no one seems to know who you are. You half expected armed guards to be waiting when you came out of your ship, ready to take you into custody. But it looks as if it's not going to be that easy.`
-			`	Finally you turn to a woman who looks like a star pilot. "Is there... a Navy building? Or police, or something? A place they take care of criminals?"`
+			choice
+				`	Look for someone who can help you.`
+					goto help
+				`	Give up.`
+			`	You never imagined it would be so hard to turn yourself in. The local authorities aren't going to be interested, they're only concerned with on-planet crimes. Even if you did find someone with the navy, you realize, there's no reason to think they would believe you. After all, it's your ship they recognize, not your face.`
+			`	It looks like the only option if you're determined to stop running is to find a space battle and go out in a blaze of glory.`
+				decline
+			label help
+			`	You look around and see a woman who looks like a star pilot. "Is there... a Navy building? Or police, or something? A place they take care of criminals?"`
 			`	"Criminals?" she asks. "Did someone rob you? Don't tell me you're that green, you look like you've been around." She frowns, and when you say nothing she continues. "Police won't be much help, they're only worried about the locals. You're on your own, I'm afraid."`
 			`	"No, it's not that. It's me. I--" You have trouble getting the words out.`
 			`	"Come on, man. You're not making sense. Why don't you just tell me what's going on, and maybe I can help."`
@@ -171,6 +181,9 @@ mission "Going legit [1]"
 			`	"Joan Dimitrov."`
 				accept
 
+	on enter
+		dialog `A group of merchant pilots have heard that you are in the system and are out for blood. Joan is watching, so you will have to flee them and make it to Earth without harming them. (If you have automatic firing on, you may want to turn it off for this mission.)`
+
 	on accept
 		log `I went to turn myself in to the Republic Navy and met Joan Dimitrov. She claims to be able to hook me up with someone who can clear my name.`
 	on fail
@@ -186,13 +199,13 @@ government "Navy Courier"
 
 # Need to think about how this works if the mainline story is in progress. Is that even possible? XXX
 mission "Going legit [2]"
-	name "Find a way to clear your name"
-	description "Destroy a courier on its way to <stopovers> and return to Earth with a hundred million credits to clear your name."
+	name "Clear your name"
+	description "Destroy a courier on its way to Gamma Corvi and return to Earth with a hundred million credits to clear your name."
 	landing
 	source Earth
-	stopover Bourne
+	waypoint "Gamma Corvi"
 	clearance
-		government Republic
+		attributes "dirt belt"
 	to offer
 		has "Going legit [1]: done"
 	npc kill
@@ -279,8 +292,8 @@ mission "Going legit [2]"
 			label "the plan"
 			`	"Good," Joan says. "The courier is a Navy ship named <npc>. It's already en route to <destination>. You'll need to hurry to catch it. You'll still be flying pirate colors, so the Navy and the Merchants will be after you, I'm afraid. Once you've eliminated the <npc> return here with a hundred million credits and your name will be cleared."`
 			`	"Why can't you clear my record ahead of time?" you ask.`
-			`	"Dammit!" Rob says. "We don't need this, you can do it yourself!"`
-			`	"We've gone over this," Joan says. "It will be much less suspicious if the courier is destroyed by a known pirate. If I do it there's too much chance it will be traced back to Dad." Then, to you, she says, "And that's why we can't clear your name ahead of time. Now, we're really past the point of questions. Either you're in or your out."`
+			`	"Dammit!" Rob says. He turns to Joan. "We don't need this, you can do the job yourself!"`
+			`	"We've gone over this," Joan says. "It will be much less suspicious if the courier is destroyed by a known pirate. If I do it there's too much chance it will be traced back to Dad." Then, to you, she says, "And that's why we can't clear your name ahead of time. Now, we're really past the point of questions. Either you're in or you're out."`
 			choice
 				`	Take the job.`
 					accept
