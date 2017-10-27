@@ -34,7 +34,7 @@ government "Pirate Warlords"
 	swizzle 6
 	"attitude toward"
 		"Pirate Planets" -1
-		"Merchant" -.1
+		"Merchant" -.01
 		"Syndicate" -.01
 		"Korath" -.01
 		"Author" -.01
