@@ -62,9 +62,9 @@ mission "event: war begins, Pirate"
 		conversation
 			`As you walk away from your ship you hear whoops and laughter, and wonder if there was a holiday you'd forgotten. A couple of old-timers you know are chatting quietly, and you ask them what's going on.`
 			`	"You haven't heard?" one of them asks, in somber tones totally at odds with the general atmosphere of revelry. "There was a nuclear explosion at the Republic Naval Yard, and another one at the Galactic Stock Exchange. They're saying the explosions were intentional."`
-			`	"Oh no," you say. "You think they're going to retaliate?"`
+			`	"Oh no!" you say. "You think they're going to retaliate?"`
 			`	"That's just it," the old-timer says. "The Republic's not blaming us for it. They think it was these 'Free Worlds' folks. They were making demands of Parliament, someting about tariffs and ship licensing, and the day after Parliament turns them down, this happened. Mark my words, war is a-brewing."`
-			`	"But it wasn't them, Thom," the other man says. "Couldn't have been. These 'Free Worlds' stand more to lose from this than anyone, if they're suspected. The Free Worlds and the Republic, they've more in common than separates them. This is just a squable, they'll be back to blaming us for it soon enough.`
+			`	"But it wasn't them, Thom," the other man says. "Couldn't have been. These 'Free Worlds' stand more to lose from this than anyone, if they're suspected. The Free Worlds and the Republic, they've more in common than separates them. This is just a squable, they'll be back to blaming us for it soon enough."`
 			`	"There you go Mitch, seeing the doom and gloom in everything. I tell you, the Republic is finally falling apart..."`
 			``
 			`	You walk away as the two continue their argument. Regardless of who did it, and where the Republic ended up pinning the blame, you're living in interesting times.`
