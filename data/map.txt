@@ -123,7 +123,6 @@ system Cardax
 	fleet "Large Northern Merchants" 3000
 	fleet "Small Northern Pirates" 1000
 	fleet "Large Northern Pirates" 3000
-	fleet "Small Core Pirates" 3000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 5000
 
@@ -150,20 +149,31 @@ system Moktar
 	government Pirate
 	fleet "Small Core Merchants" 1000
 	fleet "Small Syndicate" 3000
-	fleet "Small Core Pirates" 500
-	fleet "Large Core Pirates" 1000
+	fleet "Large Northern Pirates" 1000
 	fleet "Small Northern Pirates" 500
 
 system Oblate
 	government Pirate
-	fleet "Small Core Pirates" 600
-	fleet "Large Core Pirates" 1000
+	fleet "Small Northern Pirates" 600
+	fleet "Large Northern Pirates" 1000
 	fleet "Large Syndicate" 3000
 
 system Durax
 	government Pirate
-	fleet "Small Core Pirates" 400
-	fleet "Large Core Pirates" 600
+	fleet "Small Northern Pirates" 400
+	fleet "Large Northern Pirates" 600
 	fleet "Large Syndicate" 1200
 
+system Alcyone
+	government Pirate
+	fleet "Small Northern Pirates" 400
+	fleet "Large Northern Pirates" 600
+	fleet "Large Syndicate" 1200
+
+
+planet Stormhold
+	attributes pirate "north pirate"
+	tribute 500
+		threshold 2000
+		fleet "Large Northern Pirates" 7
 
