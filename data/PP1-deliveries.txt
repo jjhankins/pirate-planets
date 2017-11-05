@@ -23,6 +23,7 @@ mission "Complete PP delivery"
 				flee
 
 
+
 mission "PP initial"
 	name "Delivery to an isolated group on <planet>."
 	description "Jonah asked you to travel to <destination> and deliver <cargo> to a remote community without exposing the location of their settlement to the Pirate Warlords."
@@ -32,9 +33,9 @@ mission "PP initial"
 	infiltrating
 	blocked "You see Jonah in the spaceport. He suggests he has a mission for you, but you'd need <capacity> to accept it."
 	source
-		attributes pirate
+		attributes "north pirate"
 	destination
-		attributes pirate
+		attributes "north pirate"
 		not attributes station
 		distance 2 10
 	to offer
@@ -144,7 +145,8 @@ mission "PP initial"
 			`	He finally returns with the chit and a basket of home-baked pastries which the villagers press on you along with the payment. You enter the chit into your computer and your payment of <payment> is credited to your account. You then have to clear the villagers away from the ship so they won't be harmed by the blast of takeoff - two or three times, for a few of them. By the time you climb back into the cockpit your ship has been on the ground for almost five hours and you're covered in sweat and tree sap. The pastries are a bit mashed but excellent.`
 
 
-mission "PP delivery, tier 1 [0]"
+
+mission "PP delivery, tier 1"
 	name "Delivery to a community on <planet>."
 	description "You need to travel to <destination> and deliver <cargo> to a remote community by <day>. Be sure you're not observed by any ships associated with the Pirate Warlords."
 	minor
@@ -162,12 +164,11 @@ mission "PP delivery, tier 1 [0]"
 		distance 2 10
 	to offer
 		has "PP initial: done"
-		or
-			"PP missions" <= 5
-			"reputation: Pirate Planets" <= 45
+		not "PP delivery, tier 1: active"
+		not "PP Miner rescue: offered"
 		random < 33
 		"combat rating" > 100
-		"reputation: Pirate Planets" >= 25
+		"reputation: Pirate Planets" >= 15
 	npc evade
 		government "Pirate Warlords"
 		personality forbearing waiting surveillance mute
@@ -209,7 +210,7 @@ mission "PP delivery, tier 1 [0]"
 	on complete
 		set "PP delivery finished"
 		"PP missions" ++
-		"reputation: Pirate Planets" += 2
+		"reputation: Pirate Planets" ++
 		payment 0 100
 		conversation
 			`The mission goes smoothly. You find the rendezvous and drop off the <commodity>. The payment chit is ready for you, and your account is credited with <payment> once you enter it.`
