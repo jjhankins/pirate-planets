@@ -8,6 +8,7 @@
 # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
+
 ship "Star Barge" "Star Barge (Scrapped)"
 	outfits
 		"nGVF-BB Fuel Cell"
@@ -15,6 +16,7 @@ ship "Star Barge" "Star Barge (Scrapped)"
 		"Chipmunk Plasma Steering"
 	description "The Syndicate CT-50 Star Barge is little more than a cluster of cargo containers with an engine at one end and a cockpit on the other."
 	description "	Because they are cheap and common they often end up in the hands of pirates, who typically scavenge them for parts to use in more powerful ships. Occasionally such scrapped ships are used for a bit of in-system raiding."
+
 
 ship "Leviathan" "Leviathan (abandoned)"
 	uncapturable
@@ -45,6 +47,21 @@ ship "Leviathan" "Leviathan (abandoned)"
 		"D94-YV Shield Generator"
 		"Hyperdrive"
 	description "Occasionally floating hulks, shells of ships that once flew between stars, can be found drifting in space, abandoned."
+
+ship Freighter "Freighter (transport)"
+	outfits
+		Supercapacitor 2
+		"X2700 Ion Thruster"
+		"X2200 Ion Steering"
+		Hyperdrive
+		"nGVF-CC Fuel Cell"
+		"Fuel Pod" 2
+		"Quantum Key"
+		"Outfits Expansion" 7
+		"Bunk Room" 9
+		"Heavy Anti-Missile Turret"
+		"D14-RN Shield Generator"
+
 
 
 shipyard "Scrap"
