@@ -59,3 +59,19 @@ government "Republic"
 		"Navy Intelligence" 1
 		"Navy (Oathkeeper)" 1
 		"Neutral" .1
+
+#
+# Pseudo-governments
+#
+
+government " Pirate "
+	swizzle 6
+	"friendly hail" "friendly pirate"
+	"hostile hail" "hostile pirate"
+
+government " Pirate Warlords "
+	swizzle 6
+	"friendly hail" "friendly pirate"
+	"hostile hail" "hostile pirate"
+	"attitude toward"
+		"Pirate Planets" -10
