@@ -191,6 +191,39 @@ mission "PP Miner rescue [1]"
 
 
 
+mission "PP Ellerschmit crew"
+	source "Acheron Station"
+	destination Covert
+	landing
+	invisible
+	to offer
+		has "PP Miner rescue [1]: done"
+
+	npc accompany
+		government "Pirate Planets"
+		personality timid escort
+		ship "Freighter (transport)" "Grim Paradise I"
+		ship "Freighter (transport)" "Grim Paradise II"
+
+	on offer
+		conversation
+			`When you land you see the two freighters you're to escort. As the key device Jonah promised is being installed into your ship you walk over and introduce yourself to the captains, a husband-and-wife team that call themselves the Ellerschmit crew.`
+			`	"Hello, Captain <last>. I'm Captain Ellerschmit, and this is my husband, Captain Ellerschmit. Or it'd be less confusing, call me Captain Jenn and he can be Captain Walter. I understand you're to lead us to Covert." She speaks with an abrupt and forceful rhythm that's slightly irritating, though she seems friendly enough.`
+			`	"Yes, ah, Captain Jenn. Are you sure those freighters can make the trip? We're moving through hostile systems."`
+			`	"Yes sir, they certainly can. Even in their current sad and sorry state, all gutted out and filled to the noggin with bunk-rooms, they're tougher than they look. And Walter and I, we've done this kind of thing before."`
+			`	"But they don't even have weapons, do they?"`
+			`	"No sir, they certainly do not. Best not to, in cases like this. Your job is to draw fire, we'll hang back and follow. So long as you're the biggest, baddest pirate in the system, they'll go after you, not us."`
+			`	"Okay, if that's how you want to do things," you say.`
+			`	"It most certainly is. See you on the other side, Captain <last>."`
+				accept
+
+	on fail
+		dialog `You receive a transmission from Walter Ellerschmit: "Jenn's dead, you bastard! You were supposed to keep her safe!"`
+
+	on complete
+		set "Ellerschmits safe"
+
+
 
 # Crippled ship:
 ship "Bounder" "Bones of Avarice"
@@ -206,15 +239,18 @@ mission "PP Miner rescue [2]"
 	source "Acheron Station"
 	destination "Covert"
 
+	to offer
+		has "PP Miner rescue [1]: done"
+
 	waypoint Sospi
 	on enter Sospi
 		dialog "On entering the system you see the wormhole. It's a red, angry-looking thing, and you hope the device Jonah gave you will allow you to pass through it safely."
 
 	on enter Gienah
-		set "PP Miner rescue [2], incomplete"
+		set "PP Miner rescue, entering Gienah"
 		dialog `Seconds after you enter the system there's a broadcast from somewhere in the system: "Captain <last>, this is Maximus Gaultieri! Whatever you do, don't dock with the Bones! It's a tra--!" There is a burst of gunfire, and the signal cuts out.`
 
-	npc
+	npc assist
 		government " Pirate "
 		personality derelict fleeing
 		system Gienah
@@ -239,12 +275,6 @@ mission "PP Miner rescue [2]"
 			`	You slam the lever that releases the docking clamps and rush to your seat to engage the engines. Through the hull you hear the metal-on-metal groan of the Bones' docking hooks trying to gain purchase against your ship as you pull away. They catch, but you crank your ship into a turn. Metal scraping on metal screeches through the hull, but your ship slowly manages to spin away from the Bones of Avarice, spraying it with your engine. At such close range it's as effective as any weapon, and the Bones of Avarice is destroyed. You hope Max wasn't aboard.`
 			`	You don't know how to complete the mission now, but at least you're still alive. You can either land on Covert and try to locate Jonah's friend Mike on your own, or you can return to Acheron Station and tell Jonah you failed.`
 
-	npc accompany
-		government "Pirate Planets"
-		personality timid escort
-		ship "Freighter (transport)" "Grim Paradise I"
-		ship "Freighter (transport)" "Grim Paradise II"
-
 	npc
 		government " Pirate Warlords "
 		personality staying uninterested heroic vindictive
@@ -252,33 +282,31 @@ mission "PP Miner rescue [2]"
 		fleet
 			names "pirate"
 			variant 1
-				"Vanguard" 1
 				"Quicksilver (Proton)" 4
-
-	to offer
-		has "PP Miner rescue [1]: done"
-
-	on offer
-		conversation
-			`When you land you see the two freighters you're to escort. As the key device Jonah promised is being installed into your ship you walk over and introduce yourself to the captains, a husband-and-wife team that call themselves the Ellerschmit crew.`
-			`	"Hello, Captain <last>. I'm Captain Ellerschmit, and this is my husband, Captain Ellerschmit. Or it'd be less confusing, call me Captain Jenn and he can be Captain Walter. I understand you're to lead us to Covert." She speaks with an abrupt and forceful rhythm that's slightly irritating, though she seems friendly enough.`
-			`	"Yes, ah, Captain Jenn. Are you sure those freighters can make the trip? We're moving through hostile systems."`
-			`	"Yes sir, they certainly can. Even in their current sad and sorry state, all gutted out and filled to the noggin with bunk-rooms, they're tougher than they look. And Walter and I, we've done this kind of thing before."`
-			`	"But they don't even have weapons, do they?"`
-			`	"No sir, they certainly do not. Best not to, in cases like this. Your job is to draw fire, we'll hang back and follow. So long as you're the biggest, baddest pirate in the system, they'll go after you, not us."`
-			`	"Okay, if that's how you want to do things," you say.`
-			`	"It most certainly is. See you on the other side, Captain <last>."`
-				accept
 
 	on accept
 		outfit "Quantum Key"
 
+	to complete
+		has "PP Ellerschmit crew: done"
+
 	on visit
-		dialog "The Ellerschmits are still out there somewhere in the Grim Paradise I and II. You should launch and wait for them to arrive."
+		conversation
+			branch "Ellerschmits dead"
+				not "PP Ellerschmit crew: active"
+
+			dialog "The Ellerschmits have not yet made it to Gienah. You should launch and ensure they arrive safely."
+
+			label "Ellerschmits dead"
+			dialog "The Ellerschmits didn't make it and you suspect the Bones of Avarice was a trap, so you were unable to meet with Max. The mission is in shambles, but if you would like to try to salvage something from it anyway you could try exploring the spaceport."
+			apply
+				clear "PP Miner rescue, entering Gienah"
+				set "PP Miner rescue, reached Covert"
+				fail
 
 	on complete
-		set "Ellerschmits safe"
-		clear "PP Miner rescue [2], incomplete"
+		clear "PP Miner rescue, entering Gienah"
+		set "PP Miner rescue, reached Covert"
 		dialog "You've made it safely to Covert with the Ellerschmits, though you weren't able to contact Max. Perhaps you should explore the spaceport before you decide what to do next."
 
 
@@ -290,15 +318,17 @@ mission "PP Miner rescue [3a]"
 		attributes "north pirate"
 
 	to offer
+		"PP Miner rescue [2]: offered"
 		not "PP Miner rescue [2]: active"
-		not "PP Miner rescue [2], incomplete"
+		not "PP Miner rescue, entering Gienah"
+		not "PP Miner rescue, reached Covert"
 
 	on offer
 		clear "salary: Pirate Planets"
 		outfit "Quantum Key" -1
 		"reputation: Pirate Planets" <?= 5
 		conversation
-			`You've made no attempt to complete the mission to rescue the miners on Covert and you clearly don't intend to. An agent of the Pirate Planets removes the Quantum Key from your ship, and you're made to understand that Jonah isn't happy.`
+			`You've made no attempt to complete the mission to rescue the miners on Covert and you clearly don't intend to. An agent of the Pirate Planets removes the Quantum Key from your ship, and you're made to understand that Jonah isn't willing to work with you any more.`
 				decline
 
 
@@ -312,21 +342,25 @@ mission "PP Miner rescue [3b]"
 	destination "Acheron Station"
 	
 	to offer
-		has "PP Miner rescue [2], incomplete"
+		not "PP Miner rescue [4]: offered"
+		or
+			has "PP Miner rescue, entering Gienah"
+			has "PP Miner rescue, reached Covert"
 		
 	on offer
-		fail "PP Miner rescue [2]"
-		clear "PP Miner rescue [2], incomplete"
 		conversation
 			`You receive a message from Jonah. He's waiting for you on <planet> and wants to know what happened to your rescue mission. Are you going to go talk to him?`
 			choice
 				`	(Yes.)`
 					accept
 				`	(No.)`
-			`You have failed to complete a mission Jonah cares a great deal about and you're refusing to talk to him about it. You doubt he's going to be willing to work with you again.`
+			`	You have failed to complete a mission Jonah cares a great deal about and you're refusing to talk to him about it. You doubt he's going to be willing to work with you again.`
 				decline
 
 	on decline
+		fail "PP Miner rescue [2]"
+		clear "PP Miner rescue, entering Gienah"
+		clear "PP Miner rescue, reached Covert"
 		clear "salary: Pirate Planets"
 		"reputation: Pirate Planets" <?= 5
 
@@ -338,14 +372,15 @@ mission "PP Miner rescue [3c]"
 	landing
 	source "Acheron Station"
 	destination "Covert"
-
+	
 	to offer
-		has "PP Miner rescue [2], incomplete"
+		not "PP Miner rescue [4]: offered"
+		or
+			has "PP Miner rescue, entering Gienah"
+			has "PP Miner rescue, reached Covert"
 
 	on offer
-		clear "PP Miner rescue [2], incomplete"
-
-	on offer
+		fail "PP Miner rescue [2]"
 		conversation
 			`Jonah is waiting for you when you exit your ship.`
 			`	"Captain <last>. What happened?" he asks. His tone is abrupt and formal, and not at all friendly.`
@@ -364,11 +399,11 @@ mission "PP Miner rescue [3c]"
 			label docked
 			`	"Yes, I did. But I didn't enter. It didn't ... feel right." You wince, realizing how that sounds.`
 			`	"It didn't feel right," Jonah says. "So you left the Bones of Avarice behind. Then what?"`
-			`	"Ah, I didn't quite leave it behind," you say. "It refused to release its docking clamps, and in the end I had to destroy it."`
+			`	"I, ah, didn't exactly leave it behind," you say. "It refused to release its docking clamps, and in the end I had to destroy it."`
 
 			label "Ellerschmit crew"
 			branch alive
-				has "PP Miner rescue [2]: active"
+				has "PP Ellerschmit crew: active"
 
 			`	"I see," Jonah says. "And the Ellerschmits? What about them?"`
 			`	"I don't think they made it," you say. "There were Warlord ships waiting for them in Gienah. They ignored me and went straight for the Ellerschmits."`
@@ -383,7 +418,7 @@ mission "PP Miner rescue [3c]"
 
 			label alive
 			apply
-				fail "PP Miner rescue [2]"
+				fail "PP Ellerschmit crew
 				set "Ellerschmits safe"
 			`	"I see," Jonah says. "At least you brought the Ellerschmits back safely. I spoke before they took off, they say you took good care of them. Apparently you had to fight off a pack of Warlord ships in Gienah?"`
 			`	"Yes. The Warlords must have known what we were planning, they were lying in wait for the Ellerschmits. They ignored me entirely, at first."`
@@ -397,7 +432,7 @@ mission "PP Miner rescue [3c]"
 					goto "give up"
 
 			label "try again"
-			`	Jonah nodded slowly. "Okay. Yes, do that. Who knows, maybe we can salvage this. You'll have to handle the transport on your own, you won't have the Ellerschmits with you."`
+			`	Jonah nodded slowly. "Okay. Yes, do that. Who knows, maybe we can salvage this. You'll have to handle the transport on your own, you won't have the Ellerschmits with you this time."`
 			`	"I'll figure something out. I won't let you down," you say. "Or the miners on Covert."`
 				accept
 
@@ -407,29 +442,23 @@ mission "PP Miner rescue [3c]"
 				decline			
 
 	on decline
+		clear "PP Miner rescue, entering Gienah"
+		clear "PP Miner rescue, reached Covert"
 		clear "salary: Pirate Planets"
 		outfit "Quantum Key" -1
 		"reputation: Pirate Planets" <?= 5
 
+	on fail
+		clear "PP Miner rescue, entering Gienah"
+		clear "PP Miner rescue, reached Covert"
+		clear "salary: Pirate Planets"
+		outfit "Quantum Key" -1
+		"reputation: Pirate Planets" <?= 5
+		dialog "You've failed to complete an important Pirate Planets mission, it's very doubtful Jonah will continue to work with you."
+
 	on complete
+		set "PP Miner rescue, reached Covert"
 		dialog "Now that you're back on Covert you should explore the spaceport before deciding what to do next."
-
-
-
-mission "PP Miner rescue [3d]"
-	name "Try to complete the miner rescue on your own."
-	landing
-	source "Covert"
-
-	to offer
-		not "PP Miner rescue [2]: active"
-		has "PP Miner rescue [2], incomplete"
-
-	on offer
-		dialog "The Ellerschmits didn't make it and you weren't able to meet with Max. You decide you should at least explore the spaceport before deciding how to proceed. Even if you don't find a way to get in touch with Mike, at least you can let Jonah know you tried."
-
-		fail "PP Miner rescue [2]"
-		clear "PP Miner rescue [2], incomplete"
 
 
 
@@ -440,10 +469,7 @@ mission "PP Miner rescue [4]"
 	source "Covert"
 
 	to offer
-		or
-			has "PP Miner rescue [2]: done"
-			has "PP Miner rescue [3c]: done"
-			has "PP Miner rescue [3d]: done"
+		has "PP Miner rescue, reached Covert"
 
 	on offer
 		dialog "Commencing step 4 of miner mission."
