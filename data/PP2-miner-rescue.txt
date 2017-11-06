@@ -232,6 +232,7 @@ ship "Bounder" "Bones of Avarice"
 		"Hyperdrive"
 		
 # TODO: The Bones of Avarice should either self destruct or turn hostile after it's boarded.
+# BUG: If you board the Bones you should die, but do not.
 mission "PP Miner rescue [2]"
 	name "Retrieve miners from Covert."
 	description "Escort the Grim Paradise I and II through the wormhole at Sospi and then to the Gienah system. Render aid to the Bones of Avarice and while aboard meet with Max who will give further instructions."
