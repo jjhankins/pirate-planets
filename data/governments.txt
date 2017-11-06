@@ -48,17 +48,28 @@ government "Pirate Planets"
 		"Korath" -.01
 		"Author" 0
 
-# This is here to define an attitude toward Pirate Warlords
+#
+# These are here to define an attitude toward new pirate factions
+#
+
 government "Republic"
 	"attitude toward"
 		"Alpha" -.3
 		"Merchant" .25
 		"Militia" .1
 		"Pirate" -.3
-		"Pirate Warlords" -.3
+		"Pirate Warlords" -.1
 		"Navy Intelligence" 1
 		"Navy (Oathkeeper)" 1
 		"Neutral" .1
+
+government "Syndicate"
+	"attitude toward"
+		"Merchant" .3
+		"Pirate Planets" -.1
+		"Pirate" -.4
+		"Korath" -.5
+
 
 #
 # Pseudo-governments
